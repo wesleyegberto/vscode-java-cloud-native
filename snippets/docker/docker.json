@@ -1,0 +1,66 @@
+{
+	"java-openj9-runtime": {
+		"prefix": "java-openj9-optimized-runtime",
+		"body": [
+			"FROM adoptopenjdk/openjdk11-openj9:alpine-slim",
+			"WORKDIR /app",
+			"EXPOSE 8080\n",
+			"ENV JAVA_OPTIONS=\"-Xmx512m -Xms50m -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xshareclasses -Xquickstart -Djava.security.egd=file:/dev/./urandom\"",
+			"ENV SPRING_OPTIONS=\"--spring.config.location=classpath:/ --spring.jmx.enabled=false -Dspring.backgroundpreinitializer.ignore=true\"\n",
+			"ADD target/${1:app}.jar ${1:app}.jar\n",
+			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
+			"ENTRYPOINT java $$JAVA_OPTIONS -jar ${1:app}.jar $$SPRING_OPTIONS"
+		],
+		"description": "Dockerfile para image Java com Open J9"
+	},
+	"java-openj9-multistage": {
+		"prefix": "java-openj9-optimized-multistage",
+		"body": [
+			"FROM maven:3.6-jdk-11 as builder",
+			"WORKDIR /app",
+			"# copy and download only deps for caching",
+			"COPY pom.xml .",
+			"RUN mvn verify --fail-never",
+			"# copy source and build a release artifact",
+			"COPY src ./src",
+			"RUN mvn package\n",
+			"FROM adoptopenjdk/openjdk11-openj9:alpine-slim",
+			"WORKDIR /app",
+			"EXPOSE 8080\n",
+			"ENV JAVA_OPTIONS=\"-Xmx512m -Xms50m -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xshareclasses -Xquickstart -Djava.security.egd=file:/dev/./urandom\"",
+			"ENV SPRING_OPTIONS=\"--spring.config.location=classpath:/ --spring.jmx.enabled=false -Dspring.backgroundpreinitializer.ignore=true\"\n",
+			"COPY --from=builder /app/target/${1:app}*.jar ${1:app}.jar",
+			"# warmup",
+			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
+			"ENTRYPOINT java $$JAVA_OPTIONS -jar ${1:app}.jar $$SPRING_OPTIONS"
+		],
+		"description": "Dockerfile para image Java com Open J9"
+	},
+	"java-openj9-multistage-unziped": {
+		"prefix": "java-openj9-optimized-multistage-unziped",
+		"body": [
+			"FROM maven:3.6-jdk-11 as builder",
+			"WORKDIR /app",
+			"# copy and download only deps for caching",
+			"COPY pom.xml .",
+			"RUN mvn verify --fail-never",
+			"# copy source and build a release artifact",
+			"COPY src ./src",
+			"RUN mvn package\n",
+			"RUN mkdir -p target/dependency && (cd target/dependency; jar -xf ../*.jar)\n",
+			"FROM adoptopenjdk/openjdk11-openj9:alpine-slim",
+			"WORKDIR /app",
+			"EXPOSE 8080\n",
+			"ENV JAVA_OPTIONS=\"-Xmx512m -Xms50m -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xshareclasses -Xquickstart -Djava.security.egd=file:/dev/./urandom\"",
+			"ENV SPRING_OPTIONS=\"--spring.config.location=classpath:/ --spring.jmx.enabled=false -Dspring.backgroundpreinitializer.ignore=true\"\n",
+			"ARG DEPENDENCY=/app/target/dependency",
+			"COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib lib/",
+			"COPY --from=builder ${DEPENDENCY}/META-INF META-INF/",
+			"COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes\n",
+			"# warmup",
+			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
+			"ENTRYPOINT [\"java\", \"-cp\", \".:./lib/*\", \"com.github.MainApplication\"]"
+		],
+		"description": "Dockerfile para image Java com Open J9"
+	}
+}
