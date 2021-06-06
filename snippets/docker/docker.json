@@ -59,7 +59,7 @@
 			"COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes\n",
 			"# warmup",
 			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
-			"ENTRYPOINT [\"java\", \"-cp\", \".:./lib/*\", \"com.github.MainApplication\"]"
+			"ENTRYPOINT [\"java\", \"-cp\", \".:./lib/*\", \"${2:com.github.MainApplication}\"]"
 		],
 		"description": "Dockerfile para image Java com Open J9"
 	}

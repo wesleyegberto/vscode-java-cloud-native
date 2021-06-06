@@ -1,7 +1,7 @@
 {
 	"K8s - Namespace": {
 		"prefix": "k8s-namespace",
-		"description": "Kubernentes Namespace",
+		"description": "Kubernentes namespace",
 		"body": [
 			"apiVersion: v1",
 			"kind: Namespace",
@@ -10,7 +10,7 @@
 		]
 	},
 	"K8s - Deployment v1": {
-		"prefix": "k8s-deploy",
+		"prefix": "k8s-deployment",
 		"description": "Kubernentes deployments with rolling update",
 		"body": [
 			"apiVersion: apps/v1",
@@ -85,7 +85,7 @@
 	},
 	"K8s - Secret": {
 		"prefix": "k8s-secret",
-		"description": "Kubernetes Secret",
+		"description": "Kubernetes secret",
 		"body": [
 			"apiVersion: v1",
 			"kind: Secret",
@@ -99,7 +99,7 @@
 	},
 	"K8s - Deployment - Container Environment from Secret": {
 		"prefix": "k8s-env-from-secret",
-		"description": "Container environment var from Kubernetes Secret",
+		"description": "Container environment var from Kubernetes secret",
 		"body": [
 			"- name: ENV_VAR",
 			"    valueFrom:",
@@ -110,7 +110,7 @@
 	},
 	"K8s - Deployment - Container Environment from ConfigMap": {
 		"prefix": "k8s-env-from-configmap",
-		"description": "Container environment var from Kubernetes ConfigMap",
+		"description": "Container environment var from Kubernetes configmap",
 		"body": [
 			"env:",
 			"- name: ENV_VAR",
@@ -142,7 +142,7 @@
 	},
 	"K8s - ConfigMap with Key/Value Pair": {
 		"prefix": "k8s-configmap",
-		"description": "ConfigMap with a Key/Value pair",
+		"description": "ConfigMap with a key/value pair",
 		"body": [
 			"apiVersion: v1",
 			"kind: ConfigMap",
@@ -158,7 +158,7 @@
 	},
 	"K8s - ConfigMap with Key/Value from File": {
 		"prefix": "k8s-configmap-kv-file",
-		"description": "ConfigMap with a Key/Value pair and file",
+		"description": "ConfigMap with a key/value pair and file",
 		"body": [
 			"apiVersion: v1",
 			"kind: ConfigMap",
@@ -176,7 +176,7 @@
 	},
 	"K8s - File from Secret": {
 		"prefix": "k8s-file-from-secret",
-		"description": "Mount a file from a Kubernetes Secret",
+		"description": "Mount a file from a Kubernetes secret",
 		"body": [
 			"  volumeMounts:",
 			"    - mountPath: \"${1: /path/to/filename}\"",
@@ -236,7 +236,7 @@
 	},
 	"K8s - Ingress Direct Service": {
 		"prefix": "k8s-ing-svc",
-		"description": "Kubernetes Ingress direct to a Service",
+		"description": "Kubernetes ingress direct to a service",
 		"body": [
 			"apiVersion: networking.k8s.io/v1",
 			"kind: Ingress",
@@ -253,7 +253,7 @@
 	},
 	"K8s - Ingress Fanout": {
 		"prefix": "k8s-ing-fanout",
-		"description": "Kubernetes Ingress Fanout",
+		"description": "Kubernetes ingress fanout",
 		"body": [
 			"apiVersion: networking.k8s.io/v1",
 			"kind: Ingress",
@@ -283,7 +283,7 @@
 	},
 	"K8s - Ingress Named Based": {
 		"prefix": "k8s-ing-named-based",
-		"description": "Kubernetes Ingress Fanout",
+		"description": "Kubernetes Ingress named based",
 		"body": [
 			"apiVersion: networking.k8s.io/v1",
 			"kind: Ingress",
