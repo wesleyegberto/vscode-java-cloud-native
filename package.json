@@ -24,6 +24,14 @@
 			{
 				"language": "dockerfile",
 				"path": "./snippets/docker/docker.json"
+			},
+			{
+				"language": "yaml",
+				"path": "./snippets/kubernetes/kubernetes.json"
+			},
+			{
+				"language": "yaml",
+				"path": "./snippets/github-action/java-ci.json"
 			}
 		]
 	},

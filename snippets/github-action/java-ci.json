@@ -1,0 +1,37 @@
+{
+	"Github Action - Java CI": {
+		"prefix": "gh-action-java-ci",
+		"desciption": "Github Action CI for Java (build, test, upload test and coverage report)",
+		"body": [
+			"name: ${0:Java CI}\n",
+			"on: [push]\n",
+			"jobs:",
+			"  build:",
+			"    name: Build and Test",
+			"    runs-on: ubuntu-latest\n",
+			"    steps:",
+			"      - uses: actions/checkout@v2\n",
+			"      - name: Set up JDK ${1:11}",
+			"        uses: actions/setup-java@v1",
+			"        with:",
+			"          java-version: ${1:11}",
+			"          architecture: x64\n",
+			"      - name: Cache Maven packages",
+			"        uses: actions/cache@v2",
+			"        with:",
+			"          path: ~/.m2",
+			"          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}",
+			"          restore-keys: ${{ runner.os }}-m2\n",
+			"      - name: Maven Test",
+			"        run: mvn test\n",
+			"      - run: mkdir coverage-report && cp -r target/site/jacoco/* coverage-report\n",
+			"      - name: Publish Test Report",
+			"        if: ${{ always() }}",
+			"        uses: scacap/action-surefire-report@v1\n",
+			"      - uses: actions/upload-artifact@v2",
+			"        with:",
+			"          name: Publish Test Coverage Report",
+			"          path: coverage-report"
+		]
+	}
+}
