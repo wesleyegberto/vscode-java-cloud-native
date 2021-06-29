@@ -35,6 +35,7 @@ Features:
 | `k8s-configmap-kv-file` | ConfigMap with a Key/Value pair and file |
 | `k8s-file-from-secret` | Mount a file from a Kubernetes Secret |
 | `k8s-svc` | Kubernentes service v1 |
+| `k8s-svc-intern` | Kubernentes service with internal LB |
 | `k8s-hpa` | Kubernentes horizontal pod autoscaler |
 | `k8s-ing-svc` | Kubernentes ingress direct to a service |
 | `k8s-ing-fanout` | Kubernentes ingress fanout |

@@ -211,6 +211,32 @@
 			"      targetPort: 8080"
 		]
 	},
+	"K8s - Service Internal LB": {
+		"prefix": "k8s-svc-intern",
+		"description": "Kubernentes internal service v1",
+		"body": [
+			"apiVersion: v1",
+			"kind: Service",
+			"metadata:",
+			"  name: ${1:my-application}",
+			"  namespace: default",
+			"  annotations:",
+			"    networking.gke.io/load-balancer-type: \"Internal\"",
+			"  labels:",
+			"    app: ${1:my-application}",
+			"    env: ${2:environment}",
+			"spec:",
+			"  type: LoadBalancer",
+			"  selector:",
+			"    app: ${1:my-application}",
+			"    env: ${2:environment",
+			"  ports:",
+			"    - protocol: TCP",
+			"      name: http",
+			"      port: 80",
+			"      targetPort: 8080"
+		]
+	},
 	"K8s - Horizontal Pod Autoscaler": {
 		"prefix": "k8s-hpa",
 		"description": "Kubernentes horizontal pod autoscaler",
