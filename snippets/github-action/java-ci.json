@@ -1,7 +1,7 @@
 {
 	"Github Action - Java CI": {
 		"prefix": "gh-action-java-ci",
-		"desciption": "Github Action CI for Java (build, test, upload test and coverage report)",
+		"desciption": "Github Action CI for Java (build, test, upload test result and coverage report)",
 		"body": [
 			"name: ${1:Java CI}\n",
 			"on:",

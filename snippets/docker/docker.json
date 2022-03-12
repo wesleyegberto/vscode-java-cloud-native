@@ -11,7 +11,7 @@
 			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
 			"ENTRYPOINT java $$JAVA_OPTIONS -jar ${1:app}.jar $$SPRING_OPTIONS"
 		],
-		"description": "Dockerfile para image Java com Open J9"
+		"description": "Dockerfile for Java image with OpenJ9 optimized runtime"
 	},
 	"java-openj9-multistage": {
 		"prefix": "java-openj9-optimized-multistage",
@@ -34,7 +34,7 @@
 			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
 			"ENTRYPOINT java $$JAVA_OPTIONS -jar ${1:app}.jar $$SPRING_OPTIONS"
 		],
-		"description": "Dockerfile para image Java com Open J9"
+		"description": "Dockerfile for Java image with OpenJ9 optimized multistage build"
 	},
 	"java-openj9-multistage-unziped": {
 		"prefix": "java-openj9-optimized-multistage-unziped",
@@ -58,9 +58,9 @@
 			"COPY --from=builder ${DEPENDENCY}/META-INF META-INF/",
 			"COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes\n",
 			"# warmup",
-			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -jar ${1:app}.jar --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
+			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -cp .:./lib/* ${2:com.github.MainApplication} --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
 			"ENTRYPOINT [\"java\", \"-cp\", \".:./lib/*\", \"${2:com.github.MainApplication}\"]"
 		],
-		"description": "Dockerfile para image Java com Open J9"
+		"description": "Dockerfile for Java image with OpenJ9 optimized multistage build"
 	}
 }
