@@ -50,8 +50,8 @@
 			"        - name: ENV_VAR",
 			"            valueFrom:",
 			"              secretKeyRef:",
-			"                name: ${name: secret-name}",
-			"                key: ${key: entry-key}",
+			"                name: ${name:secret-name}",
+			"                key: ${key:entry-key}",
 			"        ports:",
 			"        - containerPort: 8080",
 			"          name: http",
@@ -91,10 +91,10 @@
 			"kind: Secret",
 			"type: Opaque",
 			"metadata:",
-			"  name: ${name: secret-name}",
+			"  name: ${name:secret-name}",
 			"  namespace: default",
 			"data:",
-			"  ${key: secretKey}: ${value: BASE64_ENCODED_VALUE}"
+			"  ${key:secretKey}: ${value:BASE64_ENCODED_VALUE}"
 		]
 	},
 	"K8s - Deployment - Container Environment from Secret": {
@@ -104,8 +104,8 @@
 			"- name: ENV_VAR",
 			"    valueFrom:",
 			"      secretKeyRef:",
-			"        name: ${name: secret-name}",
-			"        key: ${key: entry-key}"
+			"        name: ${name:secret-name}",
+			"        key: ${key:entry-key}"
 		]
 	},
 	"K8s - Deployment - Container Environment from ConfigMap": {
@@ -115,9 +115,9 @@
 			"env:",
 			"- name: ENV_VAR",
 			"    valueFrom:",
-			"      configMapRef:",
-			"        name: ${name: configmap-name}",
-			"        key: ${key: entry-key}",
+			"      configMapKeyRef:",
+			"        name: ${name:configmap-name}",
+			"        key: ${key:entry-key}",
 			"envFrom:",
 			"- configMapRef:",
 			"  name: ${configmap-name}"
@@ -180,11 +180,11 @@
 		"body": [
 			"  volumeMounts:",
 			"    - mountPath: \"${1: /path/to/filename}\"",
-			"      name: ${2: volumeName}",
+			"      name: ${2:volumeName}",
 			"volumes:",
-			"  - name: {2: volumeName}",
+			"  - name: {2:volumeName}",
 			"    secret:",
-			"      secretName: ${3: secretName}"
+			"      secretName: ${3:secretName}"
 		]
 	},
 	"K8s - Service": {
