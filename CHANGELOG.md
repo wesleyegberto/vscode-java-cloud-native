@@ -4,6 +4,11 @@ All notable changes to the "vscode-java-cloud-native" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.3] - 2022-04-07
+
+- Fixed:
+  - Snippet to set environment variable from ConfigMap key
+
 ## [0.0.2] - 2022-03-12
 
 - Added:
