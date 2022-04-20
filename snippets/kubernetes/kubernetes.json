@@ -46,12 +46,16 @@
 			"        env:",
 			"        - name: SPRING_PROFILES_ACTIVE",
 			"          value: \"${3:development}\"",
-			"        # environment from Secret",
+			"        # environment var from Secret",
 			"        - name: ENV_VAR",
 			"            valueFrom:",
 			"              secretKeyRef:",
 			"                name: ${name:secret-name}",
 			"                key: ${key:entry-key}",
+			"        # environments from Secret",
+			"        envFrom",
+			"          - secretRef:",
+			"              name: ${name:secret-name}",
 			"        ports:",
 			"        - containerPort: 8080",
 			"          name: http",
@@ -83,9 +87,9 @@
 			"          periodSeconds: 10"
 		]
 	},
-	"K8s - Secret": {
-		"prefix": "k8s-secret",
-		"description": "Kubernetes secret",
+	"K8s - Secret - Opaque": {
+		"prefix": "k8s-secret-opaque",
+		"description": "Kubernetes secret using Base64 encoded data",
 		"body": [
 			"apiVersion: v1",
 			"kind: Secret",
@@ -97,15 +101,31 @@
 			"  ${key:secretKey}: ${value:BASE64_ENCODED_VALUE}"
 		]
 	},
+	"K8s - Secret - Plain": {
+		"prefix": "k8s-secret-plain",
+		"description": "Kubernetes secret using plain text data",
+		"body": [
+			"apiVersion: v1",
+			"kind: Secret",
+			"metadata:",
+			"  name: ${name:secret-name}",
+			"  namespace: default",
+			"stringData:",
+			"  ${key:secretKey}: ${value:value}"
+		]
+	},
 	"K8s - Deployment - Container Environment from Secret": {
 		"prefix": "k8s-env-from-secret",
 		"description": "Container environment var from Kubernetes secret",
 		"body": [
 			"- name: ENV_VAR",
-			"    valueFrom:",
-			"      secretKeyRef:",
-			"        name: ${name:secret-name}",
-			"        key: ${key:entry-key}"
+			"  valueFrom:",
+			"    secretKeyRef:",
+			"      name: ${name:secret-name}",
+			"      key: ${key:entry-key}",
+			"envFrom:",
+			"  - secretRef:",
+			"      name: ${secret-name}"
 		]
 	},
 	"K8s - Deployment - Container Environment from ConfigMap": {
@@ -114,13 +134,13 @@
 		"body": [
 			"env:",
 			"- name: ENV_VAR",
-			"    valueFrom:",
-			"      configMapKeyRef:",
-			"        name: ${name:configmap-name}",
-			"        key: ${key:entry-key}",
+			"  valueFrom:",
+			"    configMapKeyRef:",
+			"      name: ${name:configmap-name}",
+			"      key: ${key:entry-key}",
 			"envFrom:",
-			"- configMapRef:",
-			"  name: ${configmap-name}"
+			"  - configMapRef:",
+			"      name: ${configmap-name}"
 		]
 	},
 	"K8s - ConfigMap with File": {
