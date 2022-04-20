@@ -4,6 +4,14 @@ All notable changes to the "vscode-java-cloud-native" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.3] - 2022-04-20
+
+- Changed:
+  - Snippet to create Secret using opaque to `k8s-secret-opaque`
+  - Snippet to use environment variables from Secret
+- Added:
+  - Snippet to create Secret using plain string
+
 ## [0.0.3] - 2022-04-07
 
 - Fixed:
