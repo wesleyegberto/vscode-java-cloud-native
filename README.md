@@ -47,3 +47,7 @@ Features:
 | Prefix | Description |
 | --- | --- |
 | `gh-action-java-ci` | Github Action CI for Java (build, test, upload test and coverage report) |
+
+## References
+
+- [Microsoft's Containerize Java Applications](https://docs.microsoft.com/en-us/azure/developer/java/containers/overview)
