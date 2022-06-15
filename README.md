@@ -27,6 +27,7 @@ Features:
 | --- | --- |
 | `k8s-namespace` | Kubernetes namespace |
 | `k8s-deployment` | Kubernetes deployment |
+| `k8s-rollingupdate` | Kubernetes deployment rollout strategy |
 | `k8s-secret-opaque` | Kubernetes secret using Base64 encoded data |
 | `k8s-secret-plain` | Kubernetes secret using plain text data |
 | `k8s-env-from-secret` | Container environment var from Kubernetes Secret |
