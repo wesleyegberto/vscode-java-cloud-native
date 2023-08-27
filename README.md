@@ -1,7 +1,7 @@
 # VSCode Java Cloud Native
 
-[![](https://vsmarketplacebadge.apphb.com/version/wesleyegberto.vscode-java-cloud-native.svg)](https://marketplace.visualstudio.com/items?itemName=wesleyegberto.vscode-java-cloud-native)
-[![](https://vsmarketplacebadge.apphb.com/installs-short/wesleyegberto.vscode-java-cloud-native.svg)](https://marketplace.visualstudio.com/items?itemName=wesleyegberto.vscode-java-cloud-native)
+[![github-license-badge]][github-license]
+[![github-badge]][github]
 
 Extension to help write Java application in Cloud Native fashion.
 
@@ -71,3 +71,9 @@ Java images:
 ## References
 
 - [Microsoft's Containerize Java Applications](https://docs.microsoft.com/en-us/azure/developer/java/containers/overview)
+
+[github-license]: https://github.com/wesleyegberto/vscode-java-cloud-native/blob/master/LICENSE
+[github-license-badge]: https://img.shields.io/github/license/wesleyegberto/vscode-java-cloud-native.svg?style=flat "License"
+[github]: https://github.com/wesleyegberto/vscode-java-cloud-native/actions?query=branch%3Amaster
+[github-badge]: https://github.com/wesleyegberto/vscode-java-cloud-native/actions/workflows/ci.yml/badge.svg?branch=master
+[github-history-badge]: https://buildstats.info/github/chart/wesleyegberto/vscode-java-cloud-native?includeBuildsFromPullRequest=false "GitHub Actions History"
