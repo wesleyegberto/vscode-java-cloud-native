@@ -23,8 +23,12 @@ Features:
 
 Java images:
 
-- `adoptopenjdk/openjdk11-openj9:alpine-slim`
-- `openjdk:17-alpine`
+- JDK 11:
+  - OpenJDK: `openjdk:11`
+  - Open J9: `adoptopenjdk/openjdk11-openj9:alpine-slim`
+- JDK 11:
+  - OpenJDK: `openjdk:17-alpine`
+  - Open J9: `ibm-semeru-runtimes:open-17-jdk`
 
 ## Snippets
 
