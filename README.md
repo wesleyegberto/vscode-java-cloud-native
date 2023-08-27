@@ -13,7 +13,22 @@ Features:
 * snippets for Kubernetes objects
 * snippets for Github Action
 
-## Dockerfile
+## Docker Images
+
+[Maven JDK](https://hub.docker.com/_/maven):
+
+- `maven:3.6-jdk-11`
+- `maven:3.8-openjdk-11`
+- `maven:3.8-openjdk-17`
+
+Java images:
+
+- `adoptopenjdk/openjdk11-openj9:alpine-slim`
+- `openjdk:17-alpine`
+
+## Snippets
+
+### Dockerfile
 
 | Prefix | Description |
 | --- | --- |
@@ -21,7 +36,7 @@ Features:
 | `java-openj9-optimized-multistage` | Snippet for Dockerfile with multistage build using Maven and Open J9 11 as runtime |
 | `java-openj9-optimized-multistage-unziped` | Snippet for Dockerfile with multistage build using Maven and Open J9 11 as runtime, the Uberjar file is unziped for runtime |
 
-## Kubernetes
+### Kubernetes
 
 | Prefix | Description |
 | --- | --- |
@@ -43,7 +58,7 @@ Features:
 | `k8s-ing-fanout` | Kubernentes ingress fanout |
 | `k8s-ing-named-based` | Kubernetes ingress named based |
 
-## Github Action
+### Github Action
 
 | Prefix | Description |
 | --- | --- |

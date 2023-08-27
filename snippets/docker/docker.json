@@ -16,7 +16,7 @@
 	"java-openj9-multistage": {
 		"prefix": "java-openj9-optimized-multistage",
 		"body": [
-			"FROM maven:3.6-jdk-11 as builder",
+			"FROM maven:3.8-openjdk-11 AS builder",
 			"WORKDIR /app",
 			"# copy and download only deps for caching",
 			"COPY pom.xml .",
@@ -39,7 +39,7 @@
 	"java-openj9-multistage-unziped": {
 		"prefix": "java-openj9-optimized-multistage-unziped",
 		"body": [
-			"FROM maven:3.6-jdk-11 as builder",
+			"FROM maven:3.8-openjdk-11 AS builder",
 			"WORKDIR /app",
 			"# copy and download only deps for caching",
 			"COPY pom.xml .",
@@ -54,9 +54,9 @@
 			"ENV JAVA_OPTIONS=\"-Xmx512m -Xms50m -XX:+TieredCompilation -XX:TieredStopAtLevel=1 -Xshareclasses -Xquickstart -Djava.security.egd=file:/dev/./urandom\"",
 			"ENV SPRING_OPTIONS=\"--spring.config.location=classpath:/ --spring.jmx.enabled=false -Dspring.backgroundpreinitializer.ignore=true\"\n",
 			"ARG DEPENDENCY=/app/target/dependency",
-			"COPY --from=builder ${DEPENDENCY}/BOOT-INF/lib lib/",
-			"COPY --from=builder ${DEPENDENCY}/META-INF META-INF/",
-			"COPY --from=builder ${DEPENDENCY}/BOOT-INF/classes\n",
+			"COPY --from=builder \${DEPENDENCY}/BOOT-INF/lib lib/",
+			"COPY --from=builder \${DEPENDENCY}/META-INF META-INF/",
+			"COPY --from=builder \${DEPENDENCY}/BOOT-INF/classes .\n",
 			"# warmup",
 			"RUN sh -c 'java $$JAVA_OPTIONS -Xscmx20M -cp .:./lib/* ${2:com.github.MainApplication} --run_type=short $$SPRING_OPTIONS &' ; sleep 15 ; killall java\n",
 			"ENTRYPOINT [\"java\", \"-cp\", \".:./lib/*\", \"${2:com.github.MainApplication}\"]"
