@@ -4,6 +4,11 @@ All notable changes to the "vscode-java-cloud-native" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.6] - 2023-08-26
+
+- Fixed:
+  - Snippet without escape `$`
+
 ## [0.0.5] - 2022-06-15
 
 - Changed:
