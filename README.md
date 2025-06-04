@@ -36,9 +36,11 @@ Java images:
 
 | Prefix | Description |
 | --- | --- |
-| `java-openj9-optimized-runtime` | Snippet for Dockerfile using Open J9 11 as runtime |
-| `java-openj9-optimized-multistage` | Snippet for Dockerfile with multistage build using Maven and Open J9 11 as runtime |
-| `java-openj9-optimized-multistage-unziped` | Snippet for Dockerfile with multistage build using Maven and Open J9 11 as runtime, the Uberjar file is unziped for runtime |
+| `jdk11-openj9-cds-runtime` | Snippet for Dockerfile using Open J9 11 as runtime with CDS |
+| `jdk11-openj9-cds-multistage-jar` | Snippet for Dockerfile with multistage build using Maven and Open J9 11 as runtime with CDS |
+| `jdk11-openj9-cds-multistage-unziped` | Snippet for Dockerfile with multistage build using Maven and Open J9 11 as runtime with CDS, the Uberjar file is unziped for runtime |
+| `jdk21-ibm-semeru-multistage-jar` | Snippet for Dockerfile with multistage build using Maven and IBM Semeru 21 as runtime with CDS |
+| `jdk21-ibm-semeru-multistage-unziped` | Snippet for Dockerfile with multistage build using Maven and IBM Semeru 21 as runtime with CDS, the Uberjar file is unziped for runtime |
 
 ### Kubernetes
 
