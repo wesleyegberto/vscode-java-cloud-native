@@ -4,6 +4,14 @@ All notable changes to the "vscode-java-cloud-native" extension will be document
 
 Check [Keep a Changelog](http://keepachangelog.com/) for recommendations on how to structure this file.
 
+## [0.0.7] - 2025-06-03
+
+- Added:
+  - Snippet for JDK 21 with IBM Semeru
+- Changed:
+  - OpenJ9 snipped prefix to `jdk11`
+  - Upgrade actions versions (`actions/checkout@v3` and `actions/setup-java@v4`)
+
 ## [0.0.6] - 2023-08-26
 
 - Fixed:
